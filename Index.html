@@ -201,6 +201,11 @@
                     lonVal.textContent = lon.toFixed(6);
                     timeVal.textContent = timeString;
 
+                    let deviceId = localStorage.getItem("commuter_device_id");
+if (!deviceId) {
+    deviceId = "commuter_" + Math.random().toString(36).substring(2, 9);
+    localStorage.setItem("commuter_device_id", deviceId);
+}
                     // Push to Firebase under this device's node
                     const deviceRef = ref(db, 'devices/' + deviceId);
                     set(deviceRef, {
